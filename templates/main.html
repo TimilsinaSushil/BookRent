@@ -3,8 +3,16 @@
 {% block title %}home{% endblock title %}
 
 {% block content %}
-XXX
+{{obj.title}}
 <br/>
-{{value}}
+{% if qs %}
+<ul>
+    {% for obj in qs %}
+    <li>{{obj.first_name}}, {{obj.last_name}} ({{obj.username}})</li>
+    {% endfor %}
+</ul>
+{% else %}
+    no customers data
+{% endif %}
 
 {% endblock content %}
