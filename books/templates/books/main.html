@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Book title list{% endblock title %}Book title list
+
+{% block content %}
+
+<h1>
+    Book Title List
+</h1>
+
+{% if qs %}
+<ul>
+    {% for el in qs %}
+        <li><a href="{% url "books:detail" el.pk %}">{{el.title}}</a></li>
+    {% endfor %}
+</ul>
+
+{% endif %}
+
+{% endblock content %}
+
+
