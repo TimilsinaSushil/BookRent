@@ -9,6 +9,7 @@ import qrcode
 from io import BytesIO;
 from django.core.files import File
 from PIL import Image
+from django.urls import reverse
 
 # Create your models here.
 
@@ -22,11 +23,14 @@ class BookTitle(models.Model):
 
     def get_books(self):
         return self.books.all()
+    
+    def get_absolute_url(self):
+        return reverse("books:detail", kwargs={"pk":self.pk})
 
     def __str__(self):
         return f"Book Position: {self.title}"
     
-    def save(self, *args, **kwargs):    #overriding save methode to save slug
+    def save(self, *args, **kwargs):    
         if not self.slug:
             self.slug = slugify(self.title)
         super().save(*args, **kwargs)
