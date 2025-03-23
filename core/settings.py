@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'rentals',
 
     # Third Party Apps
-    'django_countries'
+    'django_countries',
+    'import_export'
 ]
 
 MIDDLEWARE = [
