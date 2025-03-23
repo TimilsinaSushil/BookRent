@@ -3,7 +3,7 @@ from publishers.models import Publisher
 from authors.models import Author
 from django.utils.text import slugify
 import uuid
-
+from rentals.choices import STATUS_CHOICES
 # imports for qrcode generation
 import qrcode
 from io import BytesIO;
@@ -12,6 +12,7 @@ from PIL import Image
 from django.urls import reverse
 
 # Create your models here.
+
 
 class BookTitle(models.Model):
     title = models.CharField(max_length=200, unique=True)
@@ -45,6 +46,13 @@ class Book(models.Model):
 
     def __str__(self):
         return str(self.title)
+    
+    @property
+    def status(self):
+        if len(self.rental_set.all())>0:
+            statuses = dict(STATUS_CHOICES)
+            return statuses[self.rental_set.first().status]
+        return False
     
     def save( self, *args, **kwargs):
         if not self.isbn:
