@@ -7,7 +7,7 @@ def home_view(request):
     # return HttpResponse("<h1>hello world</h1> <p>Hi there</P>")
     qs = Customer.objects.all()
     # obj = Book.objects.get(id=1)
-    obj = BookTitle.objects.get(id=1)
+    obj = BookTitle.objects.get(id=11)
     books = obj.get_books()
     print(books)
     context = {
